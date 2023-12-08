@@ -5,6 +5,7 @@ import jakarta.persistence.Id;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @AllArgsConstructor
@@ -18,4 +19,8 @@ public class Ticket {
     private Long eventId;
     private String userId;
     private String code;
+    public Ticket(Long eventId, String userId) {
+        this.eventId = eventId;
+        this.userId = userId;
+    }
 }
