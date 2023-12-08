@@ -46,7 +46,7 @@ public class TicketServiceImpl implements TicketService {
                 .findById(id).orElseThrow(() ->
                         new TicketNotFoundException("Ticket with id "+ id + " not found"));
         var event = eventClient.getById(ticket.getEventId());
-        if (event.time().isAfter(LocalDate.now().minusDays(1))){
+        if (!event.time().isAfter(LocalDate.now().plusDays(1))){
             throw new TicketReturnDateExpiredException("Ticket return date expired");
         }
         ticketRepository.deleteById(id);

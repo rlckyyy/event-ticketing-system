@@ -9,7 +9,7 @@ import relucky.code.eventservice.service.EventService;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/v1/event")
+@RequestMapping("/event")
 public class EventController {
     private final EventService eventService;
     @GetMapping

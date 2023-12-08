@@ -8,7 +8,7 @@ import relucky.code.userservice.service.UserService;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/v1/user")
+@RequestMapping("/user")
 public class UserController {
     private final UserService userService;
     @GetMapping

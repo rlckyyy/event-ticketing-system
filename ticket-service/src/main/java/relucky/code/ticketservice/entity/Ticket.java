@@ -1,6 +1,8 @@
 package relucky.code.ticketservice.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
 
@@ -14,6 +16,7 @@ import java.util.UUID;
 @Builder
 public class Ticket {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDateTime boughtTime;
     private Long eventId;
