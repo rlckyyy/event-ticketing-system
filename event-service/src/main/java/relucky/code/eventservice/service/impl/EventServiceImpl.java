@@ -3,6 +3,7 @@ package relucky.code.eventservice.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import relucky.code.eventservice.dto.EventDTO;
+import relucky.code.eventservice.entity.Event;
 import relucky.code.eventservice.exception.EventTitleAlreadyTakenException;
 import relucky.code.eventservice.exception.NotFoundException;
 import relucky.code.eventservice.mapper.EventMapper;
@@ -39,7 +40,8 @@ public class EventServiceImpl implements EventService {
         if (eventRepository.findByTitle(eventDTO.title()).isPresent()){
             throw new EventTitleAlreadyTakenException("Title " + eventDTO.title() + " already exist");
         }
-        eventRepository.save(eventMapper.toModel(eventDTO));
+        Event event = eventMapper.toModel(eventDTO);
+        eventRepository.save(event);
         return eventDTO;
     }
 
