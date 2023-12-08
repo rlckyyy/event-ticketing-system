@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import relucky.code.eventservice.dto.EventDTO;
 import relucky.code.eventservice.entity.Event;
-import relucky.code.eventservice.exception.EventTitleAlreadyTakenException;
-import relucky.code.eventservice.exception.NotFoundException;
+import relucky.code.eventservice.exception.TitleAlreadyTakenException;
+import relucky.code.eventservice.exception.EventNotFoundException;
 import relucky.code.eventservice.mapper.EventMapper;
 import relucky.code.eventservice.repository.EventRepository;
 import relucky.code.eventservice.service.EventService;
@@ -32,13 +32,13 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public EventDTO getOne(Long id) {
-        return eventMapper.toDTO(eventRepository.findById(id).orElseThrow(()-> new NotFoundException("Event with id " + id + " not found")));
+        return eventMapper.toDTO(eventRepository.findById(id).orElseThrow(()-> new EventNotFoundException("Event with id " + id + " not found")));
     }
 
     @Override
     public EventDTO save(EventDTO eventDTO) {
         if (eventRepository.findByTitle(eventDTO.title()).isPresent()){
-            throw new EventTitleAlreadyTakenException("Title " + eventDTO.title() + " already exist");
+            throw new TitleAlreadyTakenException("Title " + eventDTO.title() + " already exist");
         }
         Event event = eventMapper.toModel(eventDTO);
         eventRepository.save(event);
@@ -48,7 +48,7 @@ public class EventServiceImpl implements EventService {
     @Override
     public void delete(Long id) {
         if (eventRepository.findById(id).isEmpty()){
-            throw new NotFoundException("Event with id " + id + " not found");
+            throw new EventNotFoundException("Event with id " + id + " not found");
         }
         eventRepository.deleteById(id);
     }

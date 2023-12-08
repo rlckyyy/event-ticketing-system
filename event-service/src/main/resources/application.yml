@@ -12,6 +12,8 @@ spring:
     name: event-service
 server:
   port: 8802
+  servlet:
+    context-path: /api/v1
 
 eureka:
   client:

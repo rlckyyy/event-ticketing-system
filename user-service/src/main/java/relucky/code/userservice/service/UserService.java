@@ -1,6 +1,6 @@
 package relucky.code.userservice.service;
 
-import relucky.code.userservice.document.User;
+import relucky.code.userservice.entity.User;
 import relucky.code.userservice.dto.UserDTO;
 
 import java.util.List;

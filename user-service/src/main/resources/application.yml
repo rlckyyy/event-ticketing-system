@@ -7,6 +7,8 @@ spring:
 
 server:
   port: 8801
+  servlet:
+    context-path: /api/v1
 
 eureka:
   client:

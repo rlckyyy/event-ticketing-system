@@ -2,8 +2,6 @@ package relucky.code.eventservice.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import relucky.code.eventservice.enums.EventType;
-
 import java.time.LocalDate;
 
 @Entity

@@ -7,7 +7,7 @@ import relucky.code.ticketservice.service.TicketService;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/v1/ticket")
+@RequestMapping("/ticket")
 public class TicketController {
     private final TicketService ticketService;
     @GetMapping("{id}")
@@ -25,7 +25,6 @@ public class TicketController {
         return ResponseEntity
                 .ok(ticketService.returnTicket(id));
     }
-
     @PostMapping
     ResponseEntity<?> boughtTicket(
             @RequestParam String userId,

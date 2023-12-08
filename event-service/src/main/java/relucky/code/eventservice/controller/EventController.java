@@ -12,7 +12,6 @@ import relucky.code.eventservice.service.EventService;
 @RequestMapping("api/v1/event")
 public class EventController {
     private final EventService eventService;
-
     @GetMapping
     ResponseEntity<?> findAll(){
         return ResponseEntity.ok(eventService.getAll());

@@ -6,8 +6,6 @@ import java.util.List;
 
 public interface TicketService {
     List<Ticket> findUserTickets(String userId);
-
     Ticket boughtTicket(String userId , Long eventId);
-
     boolean returnTicket(Long id);
 }

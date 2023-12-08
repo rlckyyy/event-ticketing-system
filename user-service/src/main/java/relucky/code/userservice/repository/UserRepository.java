@@ -1,7 +1,7 @@
 package relucky.code.userservice.repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
-import relucky.code.userservice.document.User;
+import relucky.code.userservice.entity.User;
 
 import java.util.Optional;
 

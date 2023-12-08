@@ -2,10 +2,10 @@ package relucky.code.userservice.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import relucky.code.userservice.document.User;
+import relucky.code.userservice.entity.User;
 import relucky.code.userservice.dto.UserDTO;
 import relucky.code.userservice.exception.EmailRegisteredYetException;
-import relucky.code.userservice.exception.NotFoundException;
+import relucky.code.userservice.exception.EntityNotFoundException;
 import relucky.code.userservice.mapper.UserMapper;
 import relucky.code.userservice.repository.UserRepository;
 import relucky.code.userservice.service.UserService;
@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO getOne(String id) {
         return userMapper.toDTO(userRepository.findById(id)
-                .orElseThrow(()-> new NotFoundException("User with id " + id + " not found")));
+                .orElseThrow(()-> new EntityNotFoundException("User with id " + id + " not found")));
     }
 
     @Override
@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void delete(String id) {
         if (userRepository.findById(id).isEmpty()){
-            throw new NotFoundException("User with id " + id + " not found");
+            throw new EntityNotFoundException("User with id " + id + " not found");
         }
         userRepository.deleteById(id);
     }

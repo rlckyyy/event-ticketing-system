@@ -1,4 +1,4 @@
-package relucky.code.userservice.document;
+package relucky.code.userservice.entity;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;
