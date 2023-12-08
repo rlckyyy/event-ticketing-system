@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  postgres:
+    container_name: postgres-event
+    image: postgres
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      PGDATA: /data/postgres
+      POSTGRES_DB: event
+    volumes:
+      - postgres:/data/postgres
+  mongo:
+    container_name: mongo-db
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo:/data/mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongouser
+      MONGO_INITDB_ROOT_PASSWORD: mongopassword
+volumes:
+  postgres:
+  mongo:
