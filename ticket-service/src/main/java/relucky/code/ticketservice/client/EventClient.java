@@ -8,7 +8,7 @@ import relucky.code.ticketservice.util.Event;
 /**
  * This interface represents a client for accessing event resources.
  */
-@FeignClient(name = "event", url = "http://localhost:8802", path = "/api/v1/event")
+@FeignClient(name = "event", url = "http://localhost:8080", path = "/api/v1/event")
 public interface EventClient {
     @GetMapping("/{id}")
     Event getById(@PathVariable Long id);
