@@ -33,4 +33,10 @@ public class TicketController {
         return ResponseEntity.status(201)
                 .body(ticketService.boughtTicket(userId, eventId));
     }
+
+    @DeleteMapping("event/{eventId}")
+    ResponseEntity<?> deleteTicketsByEvent(@PathVariable Long eventId){
+        ticketService.deleteAllTicketByEventId(eventId);
+        return ResponseEntity.ok("deleteTicketsByEvent endpoint end");
+    }
 }

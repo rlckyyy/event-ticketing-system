@@ -2,6 +2,7 @@ package relucky.code.eventservice.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import relucky.code.eventservice.client.TicketClient;
 import relucky.code.eventservice.dto.EventDTO;
 import relucky.code.eventservice.entity.Event;
 import relucky.code.eventservice.exception.TitleAlreadyTakenException;
@@ -24,6 +25,7 @@ import java.util.stream.Collectors;
 public class EventServiceImpl implements EventService {
     private final EventRepository eventRepository;
     private final EventMapper eventMapper;
+    private final TicketClient ticketClient;
 
     @Override
     public List<EventDTO> getAll() {
@@ -32,7 +34,8 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public EventDTO getOne(Long id) {
-        return eventMapper.toDTO(eventRepository.findById(id).orElseThrow(()-> new EventNotFoundException("Event with id " + id + " not found")));
+        return eventMapper.toDTO(eventRepository.findById(id)
+                .orElseThrow(()-> new EventNotFoundException("Event with id " + id + " not found")));
     }
 
     @Override
@@ -50,6 +53,10 @@ public class EventServiceImpl implements EventService {
         if (eventRepository.findById(id).isEmpty()){
             throw new EventNotFoundException("Event with id " + id + " not found");
         }
+        //TODO когда у нас удаляется событие, то должны удаляться и билетты на данное событие
+        //TODO 1) Надо реализовать удаление всех Ticket по айди Event чтобы оно использовалось в сервисе event
+        //TODO 2) Реализовать подтягивание эндпойнта удаления по тикетов в event service
+        ticketClient.deleteByEventId(id);
         eventRepository.deleteById(id);
     }
 }

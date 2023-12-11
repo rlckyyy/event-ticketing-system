@@ -4,7 +4,7 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ProblemDetail;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import relucky.code.ticketservice.exception.TicketNotFoundException;
+import relucky.code.ticketservice.exception.EntityNotFoundException;
 import relucky.code.ticketservice.exception.TicketReturnDateExpiredException;
 import relucky.code.ticketservice.exception.UserNotFoundException;
 
@@ -14,8 +14,8 @@ public class GlobalExceptionHandler {
     ProblemDetail handle(TicketReturnDateExpiredException e){
         return toDetails(400,e.getMessage());
     }
-    @ExceptionHandler(TicketNotFoundException.class)
-    ProblemDetail handle(TicketNotFoundException e){
+    @ExceptionHandler(EntityNotFoundException.class)
+    ProblemDetail handle(EntityNotFoundException e){
         return toDetails(404,e.getMessage());
     }
     @ExceptionHandler(UserNotFoundException.class)
